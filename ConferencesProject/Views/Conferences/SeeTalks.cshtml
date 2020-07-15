@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ConferencesProject.Models.Talk>
+
+@{
+    ViewBag.Title = "SeeTalks";
+}
+@if(@Model.Any() == true)
+{
+    <h2>Talks in @Model.First().Conference.Name conference</h2>
+}
+else
+{
+<h2>There are no talks in this conference</h2>
+}
+
+<p>
+    @Html.ActionLink("Create Talk", "CreateTalk", "Conferences", new { id = ViewBag.ConfId }, null)
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Abstract)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Abstract)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "DeleteTalk", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
