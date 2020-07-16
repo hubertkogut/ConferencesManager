@@ -33,6 +33,7 @@ namespace ConferencesProject.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete(int id)
         {
             try
@@ -50,6 +51,7 @@ namespace ConferencesProject.Controllers
             }
             
         }
+        [Authorize(Roles = "Admin")]
 
         [HttpPost]
         public async Task<ActionResult> Delete(int id, FormCollection form)
@@ -72,6 +74,7 @@ namespace ConferencesProject.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Create()
         {
             try
@@ -97,6 +100,7 @@ namespace ConferencesProject.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Create(Talk talk)
         {
             try

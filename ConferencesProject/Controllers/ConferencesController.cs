@@ -34,11 +34,13 @@ namespace ConferencesProject.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Conference model)
         {
             try
@@ -55,6 +57,7 @@ namespace ConferencesProject.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete (int id)
         {
             try
@@ -74,6 +77,7 @@ namespace ConferencesProject.Controllers
             
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete(int id, FormCollection form)
         {
             try
@@ -118,12 +122,14 @@ namespace ConferencesProject.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult CreateTalk()
         {
             return View();
         }
         [HttpPost]
         [Route("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> CreateTalk(Talk talk, int id)
         {
             try
@@ -146,6 +152,7 @@ namespace ConferencesProject.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> DeleteTalk(int id)
         {
             try
@@ -165,6 +172,7 @@ namespace ConferencesProject.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> DeleteTalk(int id, FormCollection form)
         {
             try

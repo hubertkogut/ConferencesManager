@@ -7,13 +7,13 @@ namespace ConferencesProject.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class _2 : IMigrationMetadata
+    public sealed partial class nowaBaza : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(nowaBaza));
         
         string IMigrationMetadata.Id
         {
-            get { return "202007121056206_2"; }
+            get { return "202007161306330_nowaBaza"; }
         }
         
         string IMigrationMetadata.Source
