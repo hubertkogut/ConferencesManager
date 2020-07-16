@@ -9,6 +9,7 @@ namespace ConferencesProject.Data
 {
     public interface IRepository
     {
+        string GetUser();
         void Save();
         void DeleteConference(Conference conference);
         Task<Conference[]> GetAllConferecesAsync();

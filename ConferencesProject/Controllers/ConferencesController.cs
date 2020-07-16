@@ -25,6 +25,7 @@ namespace ConferencesProject.Controllers
             try
             {
                 var model = await _repository.GetAllConferecesAsync();
+                var user = _repository.GetUser();
                 return View(model);
             }
             catch

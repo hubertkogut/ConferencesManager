@@ -12,12 +12,22 @@ namespace ConferencesProject.Data
     public class Repository : IRepository
     {
         private readonly ConferenceContext _context;
+        private readonly ApplicationDbContext _apContext;
 
         public Repository(ConferenceContext context)
         {
             _context = context;
+            _apContext = new ApplicationDbContext();
         }
 
+        //popraw
+        public string GetUser()
+        {
+            var model = _apContext.Users.Local;
+            var user = model.FirstOrDefault();
+            var email = user.Email;
+            return email;
+        }
 
         public void Save()
         {
