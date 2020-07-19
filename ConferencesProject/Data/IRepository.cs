@@ -9,7 +9,10 @@ namespace ConferencesProject.Data
 {
     public interface IRepository
     {
-        string GetUser();
+        Task AddUserToConfAsync(int idConf, string idUser);
+        Task<ApplicationUser[]> GetAllUsersAsync();
+        Task<UserConf[]> GetUsersByConfIdAsync(int id);
+        void AddUserConf(string email, string id);
         void Save();
         void DeleteConference(Conference conference);
         Task<Conference[]> GetAllConferecesAsync();
