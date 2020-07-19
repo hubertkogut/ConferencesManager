@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using ConferencesProject.Data;
+using ConferencesProject.Models;
 
 namespace ConferencesProject.App_Start
 {
@@ -21,6 +22,8 @@ namespace ConferencesProject.App_Start
             builder.RegisterType<Repository>()
                 .As<IRepository>().InstancePerRequest();
             builder.RegisterType<ConferenceContext>()
+                .InstancePerRequest();
+            builder.RegisterType<ApplicationDbContext>()
                 .InstancePerRequest();
 
 

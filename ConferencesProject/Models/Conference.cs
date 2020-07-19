@@ -13,5 +13,6 @@ namespace ConferencesProject.Models
         public virtual Location Location { get; set; }
         public DateTime EventDate { get; set; } = new DateTime(2000,01,01);
         public virtual ICollection<Talk> Talks { get; set; }
+        public virtual ICollection<UserConf> ParticipatingUsers { get; set; }
     }
 }

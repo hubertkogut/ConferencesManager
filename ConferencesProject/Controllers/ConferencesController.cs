@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using ConferencesProject.Data;
 using ConferencesProject.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ConferencesProject.Controllers
 {
@@ -185,6 +186,65 @@ namespace ConferencesProject.Controllers
                 _repository.DeleteTalk(model);
                 _repository.Save();
                 return View("DeleteSucces");
+            }
+            catch
+            {
+                return View("ErrorInfo");
+            }
+            
+        }
+
+        [Authorize]
+        public async Task<ActionResult> SeeUsers(int id)
+        {
+            try
+            {
+                var model = await _repository.GetUsersByConfIdAsync(id);
+                if (model == null)
+                {
+                    return View("NotFound");
+                }
+
+                return View(model);
+            }
+            catch
+            {
+                return View("ErrorInfo");
+            }
+            
+
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult> SignUp(int id)
+        {
+            try
+            {
+                var model = await _repository.GetConferenceAsync(id);
+                if (model == null)
+                {
+                    return View("NotFound");
+                }
+                return View(model);
+            }
+            catch
+            {
+                return View("ErrorInfo");
+            }
+            
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult> SignUp(int id, FormCollection form)
+        {
+            try
+            {
+                var userId = User.Identity.GetUserId();
+                await _repository.AddUserToConfAsync(id, userId);
+                _repository.Save();
+                return View("SignUpSucces");
             }
             catch
             {

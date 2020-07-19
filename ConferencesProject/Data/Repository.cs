@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ConferencesProject.Models;
 using System.Data.Entity;
+using Microsoft.Owin.Security;
 
 namespace ConferencesProject.Data
 {
@@ -12,11 +13,50 @@ namespace ConferencesProject.Data
     public class Repository : IRepository
     {
         private readonly ConferenceContext _context;
+        private readonly ApplicationDbContext _apContext;
 
-        public Repository(ConferenceContext context)
+        public Repository(ConferenceContext context, ApplicationDbContext apContext)
         {
             _context = context;
+            _apContext = apContext;
         }
+        //Users
+        public async Task<ApplicationUser[]> GetAllUsersAsync()
+        {
+            var model = await _apContext.Users.ToArrayAsync();
+            return model;
+        }
+
+        public void AddUserConf(string email, string id)
+        {
+            UserConf model = new UserConf();
+            model.Email = email;
+            model.IdInAspNetUsers = id;
+            _context.UserConfs.Add(model);
+            Save();
+        }
+
+        public async Task<UserConf[]> GetUsersByConfIdAsync(int id)
+        {
+            var query = await _context.Conferences
+                .Where(c => c.Id == id)
+                .SelectMany(c => c.ParticipatingUsers)
+                .ToArrayAsync();
+
+            return query;
+        }
+
+
+        public async Task AddUserToConfAsync(int idConf, string idUser)
+        {
+            var userConf = await _context.UserConfs.Where(c => c.IdInAspNetUsers == idUser).FirstOrDefaultAsync();
+            var conf = await _context.Conferences.Where(c => c.Id == idConf).FirstOrDefaultAsync();
+            conf.ParticipatingUsers.Add(userConf);
+
+
+        }
+        //users
+
 
 
         public void Save()

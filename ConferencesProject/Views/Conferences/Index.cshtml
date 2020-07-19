@@ -49,7 +49,9 @@
 
     <td>
         @Html.ActionLink("See talks", "SeeTalks", new { id = item.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+        @Html.ActionLink("Participating users", "SeeUsers", new { id = item.Id }) |
+        @Html.ActionLink("SignUp", "SignUp", new { id = item.Id })
     </td>
 </tr>
 }
