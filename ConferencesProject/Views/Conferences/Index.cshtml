@@ -1,10 +1,15 @@
-﻿@model IEnumerable<ConferencesProject.Models.Conference>
+﻿@using ConferencesProject.Helpers
+@model IEnumerable<ConferencesProject.Models.Conference>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home";
 }
 
-<h2>Conferences List</h2>
+
+
+@Html.AsyncPartial("Conferences", "_IndexCarousel")
+
+<h2>All Conferences List</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -29,31 +34,36 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.EventDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Location.Street)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Location.City)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Location.Country)
-    </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Country)
+            </td>
 
-    <td>
-        @Html.ActionLink("See talks", "SeeTalks", new { id = item.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
-        @Html.ActionLink("Participating users", "SeeUsers", new { id = item.Id }) |
-        @Html.ActionLink("SignUp", "SignUp", new { id = item.Id })
-    </td>
-</tr>
-}
+            <td>
+                @Html.ActionLink("See talks", "SeeTalks", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                @Html.ActionLink("Participating users", "SeeUsers", new { id = item.Id }) |
+                @Html.ActionLink("SignUp", "SignUp", new { id = item.Id })
+            </td>
+        </tr>
+    }
+    
+
 
 </table>
+
+<script> @Html.Raw(TempData["script"]) </script>

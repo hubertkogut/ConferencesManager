@@ -16,6 +16,8 @@ namespace ConferencesProject.Data
         void Save();
         void DeleteConference(Conference conference);
         Task<Conference[]> GetAllConferecesAsync();
+        Task<ConferenceWithUsersNumber[]> GetAllConferecesSortedByPopularityAsync();
+
         Task<Conference> GetConferenceAsync(int id);
         void AddConference(Conference conf);
         Task<Talk[]> GetAllTalksAsync();

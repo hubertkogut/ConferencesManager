@@ -35,6 +35,15 @@ namespace ConferencesProject.Controllers
         }
 
         [HttpGet]
+        public async Task<ActionResult> _IndexCarousel()
+        {
+            System.Threading.Thread.Sleep(3000);
+            var model = await _repository.GetAllConferecesSortedByPopularityAsync();
+
+            return View(model);
+        }
+
+        [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {

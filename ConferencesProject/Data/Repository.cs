@@ -86,6 +86,39 @@ namespace ConferencesProject.Data
             return await query.ToArrayAsync();
         }
 
+
+
+
+        private async Task<List<Conference>> GetConferencesListAsync()
+        {
+            IQueryable<Conference> query = _context.Conferences;
+            return await query.ToListAsync();
+        }
+
+        public async Task<ConferenceWithUsersNumber[]> GetAllConferecesSortedByPopularityAsync() // ugly solution, but i fail to did this by LINQ
+        {
+            var confList = await GetConferencesListAsync();
+            List<ConferenceWithUsersNumber> conferenceWithUsersNumbers = new List<ConferenceWithUsersNumber>();
+
+            foreach (Conference conf in confList)
+            {
+                int id = conf.Id;
+                var userNumberArray = await GetUsersByConfIdAsync(id);
+                int userNumber = userNumberArray.Length;
+
+                conferenceWithUsersNumbers.Add( new ConferenceWithUsersNumber()
+                {
+                    Id = id,
+                    Name = conf.Name,
+                    UsersNumber = userNumber
+                });
+            }
+
+            var confWithUsersOrdered = conferenceWithUsersNumbers.OrderByDescending(c => c.UsersNumber);
+
+            return confWithUsersOrdered.ToArray();
+        }
+
         public async Task<Conference> GetConferenceAsync(int id)
         {
             IQueryable<Conference> query = _context.Conferences
