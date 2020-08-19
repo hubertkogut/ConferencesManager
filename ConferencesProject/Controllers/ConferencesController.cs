@@ -25,7 +25,7 @@ namespace ConferencesProject.Controllers
         {
             try
             {
-                var model = await _repository.GetAllConferecesAsync();
+                var model = await _repository.GetAllConferecesSortedByPopularityAsync();
                 return View(model);
             }
             catch
@@ -35,12 +35,19 @@ namespace ConferencesProject.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> _IndexCarousel()
+        public async Task<ActionResult> _IndexAllConfList()
         {
-            System.Threading.Thread.Sleep(3000);
-            var model = await _repository.GetAllConferecesSortedByPopularityAsync();
-
-            return View(model);
+            try
+            {
+                System.Threading.Thread.Sleep(1200); //Simulation of a time-consuming operation, to show cool spinning wheels :)
+                var model = await _repository.GetAllConferecesAsync();
+                return View(model);
+            }
+            catch
+            {
+                return View("ErrorInfo");
+            }
+            
         }
 
         [HttpGet]
@@ -251,9 +258,19 @@ namespace ConferencesProject.Controllers
             try
             {
                 var userId = User.Identity.GetUserId();
-                await _repository.AddUserToConfAsync(id, userId);
-                _repository.Save();
-                return View("SignUpSucces");
+
+                var participatingUser = await _repository.GetUsersByConfIdAsync(id);
+
+                if (participatingUser.Any(x => x.IdInAspNetUsers == userId))
+                {
+                    return View("SignedUp");
+                }
+                else
+                {
+                    await _repository.AddUserToConfAsync(id, userId);
+                    _repository.Save();
+                    return View("SignUpSucces");
+                }
             }
             catch
             {

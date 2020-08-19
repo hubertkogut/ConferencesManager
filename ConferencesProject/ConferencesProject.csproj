@@ -301,8 +301,9 @@
     <Content Include="Views\Conferences\SeeUsers.cshtml" />
     <Content Include="Views\Conferences\SignUp.cshtml" />
     <Content Include="Views\Conferences\SignUpSucces.cshtml" />
-    <Content Include="Views\Conferences\_IndexCarousel.cshtml" />
-    <Content Include="Views\Conferences\_IndexCarousel_preview.cshtml" />
+    <Content Include="Views\Conferences\_IndexAllConfList.cshtml" />
+    <Content Include="Views\Conferences\_IndexAllConfList_preview.cshtml" />
+    <Content Include="Views\Conferences\SignedUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

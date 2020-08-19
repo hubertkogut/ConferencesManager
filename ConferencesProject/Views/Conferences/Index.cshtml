@@ -1,69 +1,81 @@
 ﻿@using ConferencesProject.Helpers
-@model IEnumerable<ConferencesProject.Models.Conference>
+@model IEnumerable<ConferencesProject.Models.ConferenceWithUsersNumber>
 
+<link rel="stylesheet" type="text/css" href="~/css/CarouselStyle.css">
 @{
     ViewBag.Title = "Home";
 }
 
 
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
 
-@Html.AsyncPartial("Conferences", "_IndexCarousel")
+        <div id="myCarouselItem1" class="item active">
+            <div>
+                <br />
+                <br />
+                <div class="confName">
+                    <h1> Sign up for popular conferences</h1>
+                </div>
+
+                <div class="carousel-caption" role="option">
+                    <br />
+                </div>
+            </div>
+        </div>
+
+        <div id="myCarouselItem2" class="item ">
+            <div>
+                <br />
+                <p>Popular conferences</p>
+                <div style="height: 150px">
+                    <h1> @Html.DisplayFor(Model => Model.ElementAtOrDefault(0).Name)</h1>
+                </div>
+
+                <div class="carousel-caption" role="option">
+                    <p id="signUpCarouseItem1"> @Html.ActionLink("Sign up!", "SignUp", new { id = Model.ElementAt(0).Id })</p>
+                </div>
+            </div>
+
+        </div>
+        <div id="myCarouselItem3" class="item">
+            <div>
+                <br />
+                <p>Popular conferences</p>
+                <div style="height: 150px">
+                    <h1> @Html.DisplayFor(Model => Model.ElementAtOrDefault(1).Name)</h1>
+                </div>
+
+                <div class="carousel-caption" role="option">
+                    <p id="signUpCarouseItem2"> @Html.ActionLink("Sign up!", "SignUp", new { id = Model.ElementAt(1).Id })</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+
+
+
 
 <h2>All Conferences List</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EventDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location.Street)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location.Country)
-        </th>
-        <th></th>
-    </tr>
+@Html.AsyncPartial("Conferences", "_IndexAllConfList")
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location.Street)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location.Country)
-            </td>
-
-            <td>
-                @Html.ActionLink("See talks", "SeeTalks", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
-                @Html.ActionLink("Participating users", "SeeUsers", new { id = item.Id }) |
-                @Html.ActionLink("SignUp", "SignUp", new { id = item.Id })
-            </td>
-        </tr>
-    }
-    
-
-
-</table>
 
 <script> @Html.Raw(TempData["script"]) </script>

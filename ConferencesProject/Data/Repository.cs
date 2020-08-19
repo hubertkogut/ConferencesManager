@@ -20,7 +20,7 @@ namespace ConferencesProject.Data
             _context = context;
             _apContext = apContext;
         }
-        //Users
+        
         public async Task<ApplicationUser[]> GetAllUsersAsync()
         {
             var model = await _apContext.Users.ToArrayAsync();
@@ -52,12 +52,7 @@ namespace ConferencesProject.Data
             var userConf = await _context.UserConfs.Where(c => c.IdInAspNetUsers == idUser).FirstOrDefaultAsync();
             var conf = await _context.Conferences.Where(c => c.Id == idConf).FirstOrDefaultAsync();
             conf.ParticipatingUsers.Add(userConf);
-
-
         }
-        //users
-
-
 
         public void Save()
         {
@@ -85,9 +80,6 @@ namespace ConferencesProject.Data
 
             return await query.ToArrayAsync();
         }
-
-
-
 
         private async Task<List<Conference>> GetConferencesListAsync()
         {
@@ -133,9 +125,6 @@ namespace ConferencesProject.Data
             _context.Conferences.Add(conf);
         }
 
-
-
-        //Talks
         public async Task<Talk[]> GetAllTalksAsync()
         {
             IQueryable<Talk> query = _context.Talks;
