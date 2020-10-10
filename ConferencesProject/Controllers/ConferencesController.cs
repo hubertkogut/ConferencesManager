@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ConferencesProject.CustomActionResult;
 using ConferencesProject.Data;
 using ConferencesProject.Models;
 using Microsoft.AspNet.Identity;
@@ -215,6 +216,7 @@ namespace ConferencesProject.Controllers
         {
             try
             {
+                ViewBag.CurrentConf = id; 
                 var model = await _repository.GetUsersByConfIdAsync(id);
                 if (model == null)
                 {
@@ -227,9 +229,36 @@ namespace ConferencesProject.Controllers
             {
                 return View("ErrorInfo");
             }
-            
-
         }
+
+
+        [Authorize]
+        public async Task<ActionResult> DownloadUsersInCSV(int id)
+        {
+            try
+            {
+                var model = await _repository.GetUsersByConfIdAsync(id);
+                if (model == null)
+                {
+                    return View("NotFound");
+                }
+
+                var userList = new List<SimpleUserInfo>();
+                foreach (var user1 in model)
+                {
+                    SimpleUserInfo user = new SimpleUserInfo();
+                    user.Email = user1.Email;
+                    userList.Add(user);
+                }
+
+                return new CSVResult(userList, "UserList.csv");
+            }
+            catch
+            {
+                return View("ErrorInfo");
+            }
+        }
+
 
         [HttpGet]
         [Authorize]
@@ -277,6 +306,12 @@ namespace ConferencesProject.Controllers
                 return View("ErrorInfo");
             }
             
+        }
+
+        public ActionResult Error()
+        {
+            var test = int.Parse("test");
+            return View();
         }
 
     }

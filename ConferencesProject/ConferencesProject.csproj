@@ -195,6 +195,17 @@
     <Compile Include="Controllers\ConferencesController.cs" />
     <Compile Include="ConferenceContext.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="CustomActionResult\CSVResult.cs" />
+    <Compile Include="CustomActionResult\XMLResult.cs" />
+    <Compile Include="CustomValidation\ConfDateValidator.cs" />
+    <Compile Include="CustomViewEngine\ThemeViewEngine.cs" />
+    <Compile Include="ExceptionLogFilter.cs" />
+    <Compile Include="Migrations\202009180936327_ErrorLog.cs" />
+    <Compile Include="Migrations\202009180936327_ErrorLog.designer.cs">
+      <DependentUpon>202009180936327_ErrorLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ErrorLog.cs" />
+    <Compile Include="Models\SimpleUserInfo.cs" />
     <Compile Include="Controllers\TalksController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Data\IRepository.cs" />
@@ -304,6 +315,9 @@
     <Content Include="Views\Conferences\_IndexAllConfList.cshtml" />
     <Content Include="Views\Conferences\_IndexAllConfList_preview.cshtml" />
     <Content Include="Views\Conferences\SignedUp.cshtml" />
+    <Content Include="Views\Themes\Dark\_ViewStart.cshtml" />
+    <Content Include="Views\Themes\Dark\Users\Index.cshtml" />
+    <Content Include="Views\Themes\Dark\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -330,6 +344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007171400587_UserConfUpdate.resx">
       <DependentUpon>202007171400587_UserConfUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009180936327_ErrorLog.resx">
+      <DependentUpon>202009180936327_ErrorLog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

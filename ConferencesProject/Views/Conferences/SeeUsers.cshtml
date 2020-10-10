@@ -25,6 +25,14 @@
 
 </table>
 
+@if (Model.Any())
+{
+    <a>
+        @Html.ActionLink("Download users list in CSV", "DownloadUsersInCSV", new {id = ViewBag.CurrentConf})
+    </a>
+}
+
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

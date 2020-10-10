@@ -17,5 +17,7 @@ namespace ConferencesProject
         public DbSet<Talk> Talks { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<UserConf> UserConfs { get; set; }
+
+        public DbSet<ErrorLog> Errors { get; set; }
     }
 }
