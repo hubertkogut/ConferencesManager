@@ -39,7 +39,7 @@ namespace ConferencesProject.Controllers
         {
             try
             {
-                System.Threading.Thread.Sleep(1200); //Simulation of a time-consuming operation, to show cool spinning wheels :)
+                System.Threading.Thread.Sleep(1200); //Simulation of a time-consuming operation
                 var model = await _repository.GetAllConferecesAsync();
                 return View(model);
             }

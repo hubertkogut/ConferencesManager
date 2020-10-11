@@ -87,7 +87,7 @@ namespace ConferencesProject.Data
             return await query.ToListAsync();
         }
 
-        public async Task<ConferenceWithUsersNumber[]> GetAllConferecesSortedByPopularityAsync() // ugly solution, but i fail to did this by LINQ
+        public async Task<ConferenceWithUsersNumber[]> GetAllConferecesSortedByPopularityAsync() 
         {
             var confList = await GetConferencesListAsync();
             List<ConferenceWithUsersNumber> conferenceWithUsersNumbers = new List<ConferenceWithUsersNumber>();

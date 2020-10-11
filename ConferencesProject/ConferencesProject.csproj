@@ -215,6 +215,14 @@
     <Compile Include="Migrations\202007171400587_UserConfUpdate.designer.cs">
       <DependentUpon>202007171400587_UserConfUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010102220270_errorlogs.cs" />
+    <Compile Include="Migrations\202010102220270_errorlogs.designer.cs">
+      <DependentUpon>202010102220270_errorlogs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010102224265_fropErrorlog.cs" />
+    <Compile Include="Migrations\202010102224265_fropErrorlog.designer.cs">
+      <DependentUpon>202010102224265_fropErrorlog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Conference.cs" />
@@ -262,6 +270,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="ClassDiagram2.cd" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -330,6 +340,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007171400587_UserConfUpdate.resx">
       <DependentUpon>202007171400587_UserConfUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010102220270_errorlogs.resx">
+      <DependentUpon>202010102220270_errorlogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010102224265_fropErrorlog.resx">
+      <DependentUpon>202010102224265_fropErrorlog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

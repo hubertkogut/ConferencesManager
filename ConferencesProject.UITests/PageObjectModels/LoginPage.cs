@@ -55,14 +55,14 @@ namespace ConferencesProject.UITests.PageObjectModels
             }
         }
 
-        public string HelloMessageOrRegisterLink() //to confirm if user is logged in or not
+        public string HelloMessageOrRegisterLink()
         {
             IWebElement helloMessageOrRegisterLink = Wait.Until(d => d.FindElement(By
                 .XPath("//a[text()[contains(.,'Hello') or contains(.,'Register')]]")));
             return helloMessageOrRegisterLink.Text;
         }
 
-        public override void EnsurePageLoaded() //cuz of rederiction 
+        public override void EnsurePageLoaded()
         {
             bool pageHasLoaded = (Driver.Url.Contains("https://localhost:44389/Account/Login")) &&
                                  (Driver.Title == PageTitle);
